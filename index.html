@@ -2,179 +2,163 @@
 <html lang="fa" dir="rtl"> 
  <head> 
   <meta charset="UTF-8"> 
-  <title>منو رستوران</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منو حرفه‌ای هات کنتاکی</title> 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Vazirmatn', Tahoma, sans-serif;
-      background: linear-gradient(to right, #fff1e6, #ffe0cc);
-      color: #333;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #fff5eb 0%, #ffe4d1 100%);
+      color: #2d3436;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .container {
-      max-width: 700px;
-      margin: 40px auto;
-      background: #fffdfb;
-      padding: 25px 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease-in-out;
+      width: 95%;
+      max-width: 600px;
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 0 0 30px 0;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #d35400;
-      animation: slideInDown 0.8s ease-in-out;
-    }
-    h2 {
-      font-size: 20px;
-      margin-top: 35px;
-      color: #a84300;
-      border-bottom: 2px solid #f2c094;
-      padding-bottom: 5px;
-    }
-    .item {
+    
+    .language-bar {
+      background: #fdf2e9;
+      padding: 12px;
       display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px dashed #ddd;
-      transition: transform 0.3s ease;
-    }
-    .item:hover {
-      transform: scale(1.02);
-    }
-    .languages {
-      text-align: center;
-      margin-top: 30px;
+      justify-content: center;
+      gap: 10px;
+      border-bottom: 1px solid #fed7aa;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .lang-btn {
-      padding: 8px 18px;
-      margin: 5px;
-      border: none;
-      border-radius: 10px;
-      background-color: #ff944d;
-      color: white;
-      font-weight: bold;
+      padding: 6px 15px;
+      border: 1px solid #ff944d;
+      border-radius: 20px;
+      background: white;
+      color: #d35400;
       cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
+      font-weight: bold;
+      font-size: 13px;
+      transition: 0.3s;
     }
-    .lang-btn:hover {
-      background-color: #e6721e;
-      transform: scale(1.05);
+    .lang-btn:hover, .lang-btn.active {
+      background: #ff944d;
+      color: white;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    .content-padding { padding: 0 25px; }
+
+    h1 { text-align: center; color: #e67e22; margin: 25px 0; font-size: 28px; }
+    h2 { 
+      font-size: 20px; margin-top: 30px; color: #d35400; 
+      border-bottom: 2px solid #fed7aa; padding-bottom: 8px;
     }
-    @keyframes slideInDown {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
+    .item { 
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 0; border-bottom: 1px dashed #eee;
     }
+    .price-wrap {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 5px;
+      font-weight: bold;
+      font-size: 17px;
+    }
+    .ltr-mode .price-wrap { flex-direction: row; }
   </style> 
  </head> 
  <body> 
-  <div class="container"> 
-   <h1 id="title">هات کنتاکی</h1> 
-   <h2 id="main">غذاهای اصلی</h2> 
-   <div class="item">
-    <span id="m1">سوخاری ۵ تکه</span><span>435,000T</span>
+
+  <div class="container" id="main-container"> 
+   <div class="language-bar"> 
+     <button class="lang-btn active" onclick="changeLang('fa', this)">فارسی</button> 
+     <button class="lang-btn" onclick="changeLang('en', this)">English</button> 
+     <button class="lang-btn" onclick="changeLang('ar', this)">عربی</button> 
    </div> 
-   <div class="item">
-    <span id="m2">سوخاری ۳ تکه</span><span>299,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m3">سوخاری ۲ تکه</span><span>245,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m4">سوخاری میکس</span><span>495,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m5">فیله استریپس ۵ تکه</span><span>435,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m6">فیله استریپس ۳ تکه</span><span>299,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m7">کتف و بال سوخاری</span><span>275,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m8">ساندویچ چیکن فیله</span><span>245,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m9">ناگت سوخاری</span><span>199,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m10">ماهی سوخاری</span><span>—</span>
-   </div> 
-   <div class="item">
-    <span id="m11">توپک پنیری</span><span>175,000T</span>
-   </div> 
-   <div class="item">
-    <span id="m12">گوردن بلو</span><span>—</span>
-   </div> 
-   <h2 id="starters">پیش‌غذا</h2> 
-   <div class="item">
-    <span id="s1">سالاد سزار</span><span>19,000T</span>
-   </div> 
-   <div class="item">
-    <span id="s2">سالاد کلم</span><span>20,000T</span>
-   </div> 
-   <div class="item">
-    <span id="s3">پیاز سوخاری</span><span>135,000T</span>
-   </div> 
-   <div class="item">
-    <span id="s4">قارچ سوخاری</span><span>135,000T</span>
-   </div> 
-   <div class="item">
-    <span id="s5">میکس قارچ و پیاز</span><span>135,000T</span>
-   </div> 
-   <div class="item">
-    <span id="s6">سیب‌زمینی سرخ‌کرده</span><span>15,000T</span>
-   </div> 
-   <div class="languages"> <button class="lang-btn" onclick="changeLang('fa')">فارسی</button> <button class="lang-btn" onclick="changeLang('en')">English</button> <button class="lang-btn" onclick="changeLang('ar')">عربی</button> 
-   </div> 
+
+   <div class="content-padding">
+     <h1 id="title">هات کنتاکی</h1> 
+     
+     <h2 id="main">غذاهای اصلی</h2> 
+     <div class="item"> <span id="m1">سوخاری ۵ تکه</span><div class="price-wrap"><span>699,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m2">سوخاری ۳ تکه</span><div class="price-wrap"><span>489,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m3">سوخاری ۲ تکه</span><div class="price-wrap"><span>379,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m4">سوخاری میکس</span><div class="price-wrap"><span>799,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m5">فیله استریپس ۵ تکه</span><div class="price-wrap"><span>699,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m6">فیله استریپس ۳ تکه</span><div class="price-wrap"><span>489,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m14">فیله استریپس ۲ تکه</span><div class="price-wrap"><span>379,000</span><span>T</span></div> </div> 
+     
+     <div class="item"> <span id="m7">کتف و بال سوخاری</span><div class="price-wrap"><span>439,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m8">ساندویچ چیکن فیله</span><div class="price-wrap"><span>339,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m10">ماهی سوخاری</span><div class="price-wrap"><span>—</span></div> </div> 
+     <div class="item"> <span id="m11">توپک پنیری</span><div class="price-wrap"><span>299,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="m13">کوکتل سوخاری</span><div class="price-wrap"><span>299,000</span><span>T</span></div> </div> 
+
+     <h2 id="starters">پیش‌غذا</h2> 
+     <div class="item"> <span id="s1">سالاد سزار</span><div class="price-wrap"><span>275,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="s2">سالاد کلم</span><div class="price-wrap"><span>45,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="s3">پیاز سوخاری</span><div class="price-wrap"><span>239,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="s4">قارچ سوخاری</span><div class="price-wrap"><span>239,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="s5">میکس قارچ و پیاز</span><div class="price-wrap"><span>239,000</span><span>T</span></div> </div> 
+     <div class="item"> <span id="s6">سیب‌زمینی سرخ‌کرده</span><div class="price-wrap"><span>219,000</span><span>T</span></div> </div> 
+   </div>
   </div> 
+
   <script>
     const langData = {
       fa: {
         title: "هات کنتاکی", main: "غذاهای اصلی", starters: "پیش‌غذا",
         m1: "سوخاری ۵ تکه", m2: "سوخاری ۳ تکه", m3: "سوخاری ۲ تکه", m4: "سوخاری میکس",
-        m5: "فیله استریپس ۵ تکه", m6: "فیله استریپس ۳ تکه", m7: "کتف و بال سوخاری", m8: "ساندویچ چیکن فیله",
-        m9: "ناگت سوخاری", m10: "ماهی سوخاری", m11: "توپک پنیری", m12: "گوردن بلو",
+        m5: "فیله استریپس ۵ تکه", m6: "فیله استریپس ۳ تکه", m14: "فیله استریپس ۲ تکه",
+        m7: "کتف و بال سوخاری", m8: "ساندویچ چیکن فیله", m10: "ماهی سوخاری", m11: "توپک پنیری", m13: "کوکتل سوخاری",
         s1: "سالاد سزار", s2: "سالاد کلم", s3: "پیاز سوخاری", s4: "قارچ سوخاری",
         s5: "میکس قارچ و پیاز", s6: "سیب‌زمینی سرخ‌کرده"
       },
       en: {
         title: "Hot Kentucky", main: "Main Dishes", starters: "Starters",
-        m1: "5-Piece Fried Chicken", m2: "3-Piece Fried Chicken", m3: "2-Piece Fried Chicken", m4: "Mixed Fried Chicken",
-        m5: "5-Piece Strips", m6: "3-Piece Strips", m7: "Fried Wings", m8: "Chicken Filet Sandwich",
-        m9: "Fried Nuggets", m10: "Fried Fish", m11: "Cheese Balls", m12: "Cordon Bleu",
+        m1: "5pc Fried Chicken", m2: "3pc Fried Chicken", m3: "2pc Fried Chicken", m4: "Mixed Fried Chicken",
+        m5: "5pc Strips", m6: "3pc Strips", m14: "2pc Strips",
+        m7: "Fried Wings", m8: "Chicken Filet Sandwich", m10: "Fried Fish", m11: "Cheese Balls", m13: "Fried Cocktail",
         s1: "Caesar Salad", s2: "Cabbage Salad", s3: "Fried Onion", s4: "Fried Mushroom",
         s5: "Mushroom & Onion Mix", s6: "French Fries"
       },
       ar: {
         title: "كنتاكي الحار", main: "الأطباق الرئيسية", starters: "المقبلات",
         m1: "دجاج مقلي ٥ قطع", m2: "دجاج مقلي ٣ قطع", m3: "دجاج مقلي ٢ قطع", m4: "دجاج مقلي مشكل",
-        m5: "شرائح دجاج ٥ قطع", m6: "شرائح دجاج ٣ قطع", m7: "أجنحة مقلية", m8: "ساندويتش دجاج فيليه",
-        m9: "ناجتس مقلي", m10: "سمك مقلي", m11: "كرات الجبنة", m12: "كوردون بلو",
+        m5: "شرائح دجاج ٥ قطع", m6: "شرائح دجاج ٣ قطع", m14: "شرائح دجاج ٢ قطع",
+        m7: "أجنحة مقلية", m8: "ساندويتش دجاج فيليه", m10: "سمك مقلي", m11: "کران الجبنة", m13: "سجق مقلي",
         s1: "سلطة سيزر", s2: "سلطة ملفوف", s3: "بصل مقلي", s4: "فطر مقلي",
         s5: "خليط فطر وبصل", s6: "بطاطا مقلية"
       }
     };
 
-    function changeLang(lang) {
+    function changeLang(lang, btn) {
       const data = langData[lang];
       for (let key in data) {
-        document.getElementById(key).textContent = data[key];
+        let el = document.getElementById(key);
+        if(el) el.textContent = data[key];
       }
-      document.body.dir = (lang === 'en') ? 'ltr' : 'rtl';
-      document.documentElement.lang = lang;
+      
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const container = document.getElementById('main-container');
+      if(lang === 'en') {
+        document.body.dir = 'ltr';
+        container.classList.add('ltr-mode');
+      } else {
+        document.body.dir = 'rtl';
+        container.classList.remove('ltr-mode');
+      }
     }
   </script> 
- 
-</body></html>
+ </body>
+</html>
